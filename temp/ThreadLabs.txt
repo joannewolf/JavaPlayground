@@ -1,0 +1,32 @@
+Evaluation link: https://www.surveymonkey.com/r/Z7LSDMW
+
+Thread One
+----------
+
+Define a Runnable with a run method that counts from 0 to 9,999 printing the value. ... for (int i = 0; i < 10_000...
+
+Instantiate one of these
+Create two Threads based on that one runnable object, start them, observe the output.
+
+----------------
+
+Modify the Runnable so that the variable i is an instance variable, not a local variable
+Run it again, observe the effect.
+
+------------------------------------------------------------
+Timing One (Bad)
+
+Create one thread; the Runnable "looks at" a boolean value in an external scope (it's shared). When this Runnable starts:
+print welcome message, enter "infinite while loop", on exit from loop print message and end.
+
+Main: Create/start thread above. Sleep 1000 milliseconds -- Thread.sleep(ms) then change the boolean value, print a message and exit.
+
+------------------------------------------------------------
+Counting
+Create TWO instances of a Runnable, the runnable increments a shared data value 100_000 times.
+
+Kick off the two threads sleep for 1 second, then print the resuling value
+
+1) with normal int
+2) mark the int "volatile"
+

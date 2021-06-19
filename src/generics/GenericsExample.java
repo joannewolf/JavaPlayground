@@ -1,5 +1,8 @@
 package generics;
 
+/**
+ * Generics: <E extends A & B>
+ */
 interface Colored {
   String getColor();
 }
@@ -8,7 +11,7 @@ interface Sized {
   int getSize();
 }
 
-class Pair<E extends Sized & Colored> {
+class Pair<E> {
   private E left;
   private E right;
 
@@ -21,8 +24,17 @@ class Pair<E extends Sized & Colored> {
 
   public E getRight() { return right; }
 
+}
+
+class ClothingPair<E extends Colored & Sized> extends Pair<E> {
+
+  public ClothingPair(E left, E right) {
+    super(left, right);
+  }
+
   boolean matched() {
-    return (left.getSize() == right.getSize()) && (left.getColor().equals(right.getColor()));
+    return getLeft().getSize() == getRight().getSize() &&
+      getLeft().getColor().equals(getRight().getColor());
   }
 }
 
@@ -36,14 +48,10 @@ class Glove implements Colored, Sized {
   }
 
   @Override
-  public int getSize() {
-    return size;
-  }
+  public int getSize() { return size; }
 
   @Override
-  public String getColor() {
-    return color;
-  }
+  public String getColor() { return color; }
 }
 
 public class GenericsExample {
@@ -53,14 +61,20 @@ public class GenericsExample {
   }
 
   static void practiceGenerics() {
-//    Pair<String> stringPair = new Pair<>("left!", "right!");
-    Pair<Glove> unmatchedGlovePair = new Pair<>(
+    Pair<String> stringPair = new Pair<>("left!", "right!");
+//    Pair<String> stringPair2 = new Pair("left!", 123);
+    /*
+      After remove <>, the compiler won't complain even the type of two arguments are different
+      Because we didn't specify, it takes it as Unknown and hope the code is right, there will be warning
+    */
+
+    ClothingPair<Glove> unmatchedGlovePair = new ClothingPair<>(
       new Glove(1, "red"),
       new Glove(2, "blue")
     );
     System.out.println(unmatchedGlovePair.matched());
 
-    Pair<Glove> matchedGlovePair = new Pair<>(
+    ClothingPair<Glove> matchedGlovePair = new ClothingPair<>(
       new Glove(1, "red"),
       new Glove(1, "red")
     );

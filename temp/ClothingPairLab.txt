@@ -1,0 +1,30 @@
+Clothing Pair Exercise
+
+---------------------------------------------------
+1) Define a simple, generic Pair class i.e. I can use it as:
+
+  Pair<String> ps = new Pair<>("Fred", "Jones");
+
+---------------------------------------------------
+2) Define interfaces Colored and Sized, with one method each:
+  String getColor();
+and 
+  int getSize();
+
+Modify Pair, to require items which are Sized... (this is E extends Blah syntax)
+
+Verify that Pair<String> is now illegal!
+
+--------------------------------------------------
+3) Define a class Glove implements Colored, Sized
+Create a Pair<Glove> verify this is LEGAL!
+
+--------------------------------------------------
+4) Define (in the Pair class) a method:
+  boolean matched()
+which reports true, if the sizes of both left and right elements are the same, false otherwise
+
+--------------------------------------------------
+5) (I didn't teach you this!!! So ask :)
+Modify the matched method to verify both size and color of the contents.
+
